@@ -1,0 +1,9 @@
+# Ignore the following folders
+/archives/UCRArchive_2018/Collision_*
+/data
+/results
+/venv
+
+# Ignore IDE specific files
+.idea/
+.vscode/
