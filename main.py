@@ -94,7 +94,8 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 ############################################### main
 
 # change this directory for your machine
-root_dir = '/home/lima/Documents/classes/ann/dl-4-tsc'
+root_dir = '/home/lima/codes/python/dnn-tether'
+# root_dir = '/home/lima/Documents/classes/ann/dl-4-tsc'
 
 if sys.argv[1] == 'run_all':
     for classifier_name in CLASSIFIERS:
