@@ -21,6 +21,7 @@ from utils.utils import read_all_datasets
 
 # Run the command below:
 # python3 main.py UCRArchive_2018 Coffee fcn _itr_8
+# python3 main.py UCRArchive_2018 Collision fcn _itr_8
 # python3 main.py UCRArchive_2018 Collision resnet _itr_8
 # python3 main.py UCRArchive_2018 Collision inception _itr_8
 # python3 main.py transform_mts_to_ucr_format
