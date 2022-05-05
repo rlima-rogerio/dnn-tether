@@ -21,9 +21,9 @@ from utils.utils import read_all_datasets
 
 # Run the command below:
 # python3 main.py UCRArchive_2018 Coffee fcn _itr_8
-# python3 main.py UCRArchive_2018 Collision fcn _itr_8
-# python3 main.py UCRArchive_2018 Collision resnet _itr_8
-# python3 main.py UCRArchive_2018 Collision inception _itr_8
+# python3 main.py UCRArchive_2018 Collision fcn _itr_0
+# python3 main.py UCRArchive_2018 Collision resnet _itr_0
+# python3 main.py UCRArchive_2018 Collision inception _itr_0
 # python3 main.py transform_mts_to_ucr_format
 # python3 main.py mts_archive Tether resnet _itr_8
 # python3 main.py single_evaluation {resnet, fcn, inception}
@@ -95,8 +95,8 @@ def create_classifier(classifier_name, input_shape, nb_classes, output_directory
 ############################################### main
 
 # change this directory for your machine
-root_dir = '/home/lima/codes/python/dnn-tether'
-# root_dir = '/home/lima/Documents/classes/ann/dl-4-tsc'
+# root_dir = '/home/lima/codes/python/dnn-tether'
+root_dir = '/home/lima/Documents/classes/ann/dl-4-tsc'
 
 if sys.argv[1] == 'run_all':
     for classifier_name in CLASSIFIERS:
