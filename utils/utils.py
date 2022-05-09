@@ -799,6 +799,8 @@ def batch_evaluation(root_dir, classifier, data_portion):
     from sklearn.metrics import confusion_matrix
     from sklearn.metrics import ConfusionMatrixDisplay
     import matplotlib
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
     matplotlib.use('TkAgg')
     import matplotlib.pyplot as plt
     from sklearn.metrics import roc_curve, auc
@@ -871,6 +873,7 @@ def batch_evaluation(root_dir, classifier, data_portion):
     # ax.yaxis.set_ticklabels(['False', 'True']);
     
     plt.savefig(root_dir + '/' + 'results/' + classifier + '/' + archive_name + '/' + dataset_name + '/' + 'confusion_' + data_portion + '_' + classifier + '.png')
+    plt.savefig(root_dir + '/' + 'results/' + classifier + '/' + archive_name + '/' + dataset_name + '/' + 'confusion_' + data_portion + '_' + classifier + '.eps')
     plt.show()
 
     # # Plotting and estimation of FPR, TPR

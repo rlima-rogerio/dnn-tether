@@ -4,6 +4,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import plot_confusion_matrix
 import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42 # These two lines needed to be included 
+matplotlib.rcParams['ps.fonttype'] = 42  # b/c of Type 3 font not allowed at the paper submission system
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
