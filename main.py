@@ -6,6 +6,7 @@ from utils.utils import visualize_filter
 from utils.utils import viz_for_survey_paper
 from utils.utils import viz_cam
 from utils.utils import single_evaluation
+from utils.utils import single_evaluation2 # DEBUG 
 from utils.utils import batch_evaluation
 from utils.utils import continuous_evaluation
 import os
@@ -27,6 +28,7 @@ from utils.utils import read_all_datasets
 # python3 main.py transform_mts_to_ucr_format
 # python3 main.py mts_archive Tether resnet _itr_8
 # python3 main.py single_evaluation {resnet, fcn, inception}
+# python3 main.py single_evaluation2 {resnet, fcn, inception}
 # python3 main.py batch_evaluation {resnet, fcn, inception} {test, train}
 # python3 main.py continuous_evaluation inception
 
@@ -133,6 +135,9 @@ if sys.argv[1] == 'run_all':
 elif sys.argv[1] == 'single_evaluation':
     classifier_name = sys.argv[2]
     single_evaluation(root_dir, classifier_name)
+elif sys.argv[1] == 'single_evaluation2':
+    classifier_name = sys.argv[2]
+    single_evaluation2(root_dir, classifier_name)
 elif sys.argv[1] == 'batch_evaluation':
     classifier_name = sys.argv[2]
     data_portion = sys.argv[3] # train or test

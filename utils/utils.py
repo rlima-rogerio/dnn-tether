@@ -714,6 +714,7 @@ def viz_cam(root_dir):
         plt.savefig(root_dir + '/temp/' + classifier + '-cam-' + save_name + '-class-' + str(int(c)) + '.png',
                     bbox_inches='tight', dpi=1080)
 
+# This single_evaluation function is working
 def single_evaluation(root_dir, classifier):
     import tensorflow.keras as keras
     from sklearn.metrics import confusion_matrix
@@ -793,6 +794,61 @@ def single_evaluation(root_dir, classifier):
     # print(y_test[idx].astype(numpy.int16))
 
 
+# This single_evaluation2 function is for testing (trying to make it working with 300 x 1 timeseries)
+def single_evaluation2(root_dir, classifier):
+    from classifiers import inception
+    import tensorflow.keras as keras
+    from sklearn.metrics import confusion_matrix
+    from sklearn.metrics import ConfusionMatrixDisplay
+    import matplotlib
+    matplotlib.use('TkAgg')
+    import matplotlib.pyplot as plt
+    import numpy
+    import tensorflow as tf
+
+    classifier = 'inception'
+    archive_name = 'UCRArchive_2018'
+    dataset_name = 'Collision'
+    datasets_dict = read_dataset(root_dir, archive_name, dataset_name)
+
+    x_test = datasets_dict[dataset_name][2]
+    y_test = datasets_dict[dataset_name][3]
+
+    idx = 19
+
+    model = keras.models.load_model(
+        root_dir + '/' + 'results/' + classifier + '/' + archive_name + '/' + dataset_name + '/best_model.hdf5')
+
+    weights = model.get_weights()
+    print('---')
+    print(len(weights))
+    print('---')
+
+    # print(model.summary())
+
+    xt = tf.reshape(x_test[idx],[300,1])
+    input_shape = xt.shape
+
+    nb_classes = len(np.unique(np.concatenate(([], y_test), axis=0)))
+    output_directory = root_dir + '/results/' + classifier + '/' + archive_name + '/' + \
+                       dataset_name + '/'
+    verbose = False
+
+    single_item_model = inception.Classifier_INCEPTION(output_directory, input_shape, nb_classes, verbose)
+    print('---created model---')
+    print(len( single_item_model.model.get_weights() ))
+    print('---created model---')
+    
+    single_item_model.model.set_weights(weights)
+    single_item_model.model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(0.001),
+                      metrics=['accuracy'])
+
+    for k in range(y_test.size):
+            x_single = tf.reshape(x_test[k],[1,300])
+            y_single = single_item_model.model.predict(x_single)
+            print('%d: Expected = %d, Predicted = %d' % (k, y_test[k].astype(numpy.int16), y_single.argmax()))
+
+
 
 def batch_evaluation(root_dir, classifier, data_portion):
     import tensorflow.keras as keras
@@ -839,11 +895,14 @@ def batch_evaluation(root_dir, classifier, data_portion):
     model = keras.models.load_model(
         root_dir + '/' + 'results/' + classifier + '/' + archive_name + '/' + dataset_name + '/best_model.hdf5')
 
-    
+    # print(model.summary())
+
     y_pred = model.predict(x)
     # print(y_pred)
 
-    # print(x_test[idx])
+    # print(x[idx])
+    # print(x.size)
+    # print(x[idx].size)
     # print(y.size)
     # print(y_pred.size)
     # print(y_pred[idx])
