@@ -737,6 +737,7 @@ def single_evaluation(root_dir, classifier):
     model = keras.models.load_model(
         root_dir + '/' + 'results/' + classifier + '/' + archive_name + '/' + dataset_name + '/best_model.hdf5')
 
+    # https://datascience.stackexchange.com/questions/13461/how-can-i-get-prediction-for-only-one-instance-in-keras
     # https://machinelearningmastery.com/use-different-batch-sizes-training-predicting-python-keras/
 
     # model = tf.create_model(batch_size=64)
